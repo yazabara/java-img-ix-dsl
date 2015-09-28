@@ -1,11 +1,9 @@
 package imgix;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.utils.URIBuilder;
 
-import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 
@@ -49,7 +47,6 @@ public class CImgIxBuilder implements IImgIxBuilder {
     private String domain;
     /**
      * img full path with extension
-     * (for example 'channel-CMB_CH001/movie-IDBATN7Z/poster-IDBATN7Z-auto-00001.png' )
      */
     private String imagePath;
     /**
