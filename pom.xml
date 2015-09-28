@@ -16,6 +16,12 @@
     <dependencies>
 
         <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>14.0</version>
@@ -33,19 +39,17 @@
             <version>4.4</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.5.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.4</version>
-        </dependency>
-
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>downloadSources</id>
+            <properties>
+                <downloadSources>true</downloadSources>
+                <downloadJavadocs>true</downloadJavadocs>
+            </properties>
+        </profile>
+    </profiles>
 
 
 </project>

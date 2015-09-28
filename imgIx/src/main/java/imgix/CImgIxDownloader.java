@@ -1,6 +1,5 @@
 package imgix;
 
-import com.sun.istack.internal.Nullable;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.imageio.ImageIO;
@@ -13,7 +12,6 @@ import java.net.URL;
  */
 public class CImgIxDownloader {
 
-    @Nullable
     public static BufferedImage downloadImage(String url) throws IOException {
         if (StringUtils.isBlank(url)) {
             return null;
@@ -21,7 +19,6 @@ public class CImgIxDownloader {
         return ImageIO.read(new URL(url));
     }
 
-    @Nullable
     public static BufferedImage downloadImage(IImgIxBuilder builder) throws IOException {
         String url;
         try {

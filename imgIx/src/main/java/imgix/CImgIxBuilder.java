@@ -144,7 +144,6 @@ public class CImgIxBuilder implements IImgIxBuilder {
                     uriBuilder.addParameter(ImgIxParams.TRIMCOL.paramName, trimcol);
                 }
             }
-
         }
         if (StringUtils.isNotBlank(auto)) {
             uriBuilder.addParameter(ImgIxParams.AUTO.paramName, auto);
