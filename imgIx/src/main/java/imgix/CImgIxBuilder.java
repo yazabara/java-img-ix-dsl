@@ -22,6 +22,7 @@ public class CImgIxBuilder implements IImgIxBuilder {
         TRIMMD("trimmd"),
         TRIMSD("trimsd"),
         TRIMCOL("trimcol"),
+        TRIMTOL("trimtol"),
         QUALITY("q");
 
         private String paramName;
@@ -104,6 +105,12 @@ public class CImgIxBuilder implements IImgIxBuilder {
      * The default value is 10.
      */
     private String trimsd;
+    /**
+     * trim tolerance
+     * The trimtol parameter defines the tolerance for the trim=color operation. This parameter is valid only when trim is set to color.
+     * If not specified, the default value is 0.
+     */
+    private String trimtol;
 
     public CImgIxBuilder(String domain, String imagePath) {
         this.domain = domain;
@@ -142,6 +149,9 @@ public class CImgIxBuilder implements IImgIxBuilder {
             } else {
                 if (StringUtils.isNotBlank(trimcol)) {
                     uriBuilder.addParameter(ImgIxParams.TRIMCOL.paramName, trimcol);
+                }
+                if (StringUtils.isNotBlank(trimtol)) {
+                    uriBuilder.addParameter(ImgIxParams.TRIMTOL.paramName, trimtol);
                 }
             }
         }
@@ -212,7 +222,7 @@ public class CImgIxBuilder implements IImgIxBuilder {
         return this;
     }
 
-    public IImgIxBuilder setTrim(String trim, String trimcol, String trimmd, String trimsd) {
+    public IImgIxBuilder setTrim(String trim, String trimcol, String trimmd, String trimsd, String trimtol) {
         if (!StringUtils.equals(trim, "auto") && !StringUtils.equals(trim, "color")) {
             return this;
         }
@@ -222,8 +232,8 @@ public class CImgIxBuilder implements IImgIxBuilder {
             this.trimsd = StringUtils.isBlank(trimsd) ? null : trimsd;
         } else {
             this.trimcol = trimcol;
+            this.trimtol = trimtol;
         }
         return this;
     }
-
 }

@@ -30,5 +30,5 @@ public interface IImgIxBuilder {
 
     IImgIxBuilder setQuality(String quality);
 
-    IImgIxBuilder setTrim(String trim, String trimcol, String trimmd, String trimsd);
+    IImgIxBuilder setTrim(String trim, String trimcol, String trimmd, String trimsd, String trimtol);
 }
