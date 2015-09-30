@@ -24,7 +24,7 @@ public class CImgIxDownloaderTest {
                 .setHeight("300")
                 .setExtension(ext)
                 .setQuality("75")
-                .setTrim("auto", "black", "9", "8")
+                .setTrim("auto", "black", "9", "8", "")
                 .setAuto("enhance")
                 .setFit("crop");
         BufferedImage image = CImgIxDownloader.downloadImage(builder.makeLink());
@@ -44,7 +44,7 @@ public class CImgIxDownloaderTest {
                 .setHeight("300")
                 .setExtension(ext)
                 .setQuality("75")
-                .setTrim("auto", "black", "9", "8")
+                .setTrim("auto", "black", "9", "8", "")
                 .setAuto("enhance")
                 .setFit("crop");
         BufferedImage image = CImgIxDownloader.downloadImage(builder);

@@ -12,7 +12,7 @@ import java.net.URISyntaxException;
  */
 public class CImgIxBuilder implements IImgIxBuilder {
 
-    private enum ImgIxParams {
+    public enum ImgIxParams {
         WIDTH("w"),
         HEIGHT("h"),
         AUTO("auto"),
@@ -29,6 +29,10 @@ public class CImgIxBuilder implements IImgIxBuilder {
 
         ImgIxParams(String paramName) {
             this.paramName = paramName;
+        }
+
+        public String getParamName() {
+            return paramName;
         }
     }
 
