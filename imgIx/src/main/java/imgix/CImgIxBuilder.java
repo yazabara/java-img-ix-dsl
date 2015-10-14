@@ -11,7 +11,6 @@ import java.net.URISyntaxException;
  * Created by yazab on 28-Sep-15.
  */
 public class CImgIxBuilder implements IImgIxBuilder {
-
     public enum ImgIxParams {
         WIDTH("w"),
         HEIGHT("h"),
@@ -19,12 +18,13 @@ public class CImgIxBuilder implements IImgIxBuilder {
         NEW_EXTENSION("fm"),
         TRIM("trim"),
         FIT("fit"),
+        BLUR("blur"),
+        MONO("mono"),
         TRIMMD("trimmd"),
         TRIMSD("trimsd"),
         TRIMCOL("trimcol"),
         TRIMTOL("trimtol"),
         QUALITY("q");
-
         private String paramName;
 
         ImgIxParams(String paramName) {
@@ -38,7 +38,6 @@ public class CImgIxBuilder implements IImgIxBuilder {
 
     private enum ImgIxSchemes {
         HTTP("http"), HTTPS("https");
-
         private String scheme;
 
         ImgIxSchemes(String scheme) {
@@ -69,6 +68,11 @@ public class CImgIxBuilder implements IImgIxBuilder {
      */
     private String fit;
     /**
+     * blur
+     * Applies a gaussian style blur to your image. Valid values are in the range from 0 – 2000. The default value is 0 which leaves the image unchanged.
+     */
+    private String blur;
+    /**
      * output format
      * The output format to convert the image to.
      */
@@ -85,6 +89,12 @@ public class CImgIxBuilder implements IImgIxBuilder {
      * This includes auto image file formats, auto enhancement, and red eye removal.
      */
     private String auto;
+    /**
+     * monochrome
+     * Applies an overall monochromatic hue change with a specified three or six digit hex value. Both ff0000 and f00 will result the same red.
+     * The monochromatic intensity can be set by using an eight digit hex value, with the first two digits representing the opacity of the color being applied.
+     */
+    private String monochrome;
     // TRIM
     /**
      * trim image
@@ -122,12 +132,14 @@ public class CImgIxBuilder implements IImgIxBuilder {
     }
 
     public String makeLink() throws URISyntaxException, MalformedURLException {
-        URIBuilder uriBuilder = new URIBuilder()
-                .setScheme(scheme)
-                .setHost(domain)
-                .setPath(imagePath);
-
+        URIBuilder uriBuilder = new URIBuilder().setScheme(scheme).setHost(domain).setPath(imagePath);
         //additional params
+        if (StringUtils.isNotBlank(blur)) {
+            uriBuilder.addParameter(ImgIxParams.BLUR.paramName, blur);
+        }
+        if (StringUtils.isNotBlank(monochrome)) {
+            uriBuilder.addParameter(ImgIxParams.MONO.paramName, monochrome);
+        }
         if (StringUtils.isNotBlank(width)) {
             uriBuilder.addParameter(ImgIxParams.WIDTH.paramName, width);
         }
@@ -223,6 +235,19 @@ public class CImgIxBuilder implements IImgIxBuilder {
             return this;
         }
         this.auto = auto;
+        return this;
+    }
+
+    public IImgIxBuilder setBlur(Integer blur) {
+        if (blur == null || blur < 0 || blur > 2000) {
+            return this;
+        }
+        this.blur = blur.toString();
+        return this;
+    }
+
+    public IImgIxBuilder setMonochrome(String monochrome) {
+        this.monochrome = monochrome;
         return this;
     }
 

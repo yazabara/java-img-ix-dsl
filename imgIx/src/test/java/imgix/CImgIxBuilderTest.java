@@ -90,6 +90,20 @@ public class CImgIxBuilderTest {
         assertTrue(StringUtils.equals(getParamByName(builder.makeLink(), CImgIxBuilder.ImgIxParams.FIT.getParamName()).getValue(), "crop"));
     }
 
+    @Test
+    public void builderShouldChangeBlur() throws Exception {
+        IImgIxBuilder builder = new CImgIxBuilder(domain, "/channel-CMB_CH001/movie-IDBATN7Z/poster-IDBATN7Z-auto-00001.png");
+        builder.setBlur(1000);
+        assertTrue(StringUtils.equals(getParamByName(builder.makeLink(), CImgIxBuilder.ImgIxParams.BLUR.getParamName()).getValue(), "1000"));
+    }
+
+    @Test
+    public void builderShouldChangeMono() throws Exception {
+        IImgIxBuilder builder = new CImgIxBuilder(domain, "/channel-CMB_CH001/movie-IDBATN7Z/poster-IDBATN7Z-auto-00001.png");
+        builder.setMonochrome("f00");
+        assertTrue(StringUtils.equals(getParamByName(builder.makeLink(), CImgIxBuilder.ImgIxParams.MONO.getParamName()).getValue(), "f00"));
+    }
+
     private NameValuePair getParamByName(String link, String name) throws URISyntaxException {
         URIBuilder uriBuilder = new URIBuilder(link);
         for (NameValuePair pair : uriBuilder.getQueryParams()){

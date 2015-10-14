@@ -30,5 +30,9 @@ public interface IImgIxBuilder {
 
     IImgIxBuilder setQuality(String quality);
 
+    IImgIxBuilder setBlur(Integer blur);
+
+    IImgIxBuilder setMonochrome(String monochrome);
+
     IImgIxBuilder setTrim(String trim, String trimcol, String trimmd, String trimsd, String trimtol);
 }
