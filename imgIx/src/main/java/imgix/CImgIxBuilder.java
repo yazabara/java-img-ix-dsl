@@ -269,6 +269,10 @@ public class CImgIxBuilder implements IImgIxBuilder {
         return this;
     }
 
+    public boolean isJsonPalette() {
+        return StringUtils.isNotBlank(palette) && StringUtils.equals("json", palette);
+    }
+
     public IImgIxBuilder setTrim(String trim, String trimcol, String trimmd, String trimsd, String trimtol) {
         if (!StringUtils.equals(trim, "auto") && !StringUtils.equals(trim, "color")) {
             return this;

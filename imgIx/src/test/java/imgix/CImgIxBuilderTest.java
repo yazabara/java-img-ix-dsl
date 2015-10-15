@@ -104,6 +104,13 @@ public class CImgIxBuilderTest {
         assertTrue(StringUtils.equals(getParamByName(builder.makeLink(), CImgIxBuilder.ImgIxParams.MONO.getParamName()).getValue(), "f00"));
     }
 
+    @Test(expected = AssertionError.class)
+    public void builderShouldChangeMonoWithException() throws Exception {
+        IImgIxBuilder builder = new CImgIxBuilder(domain, "/channel-CMB_CH001/movie-IDBATN7Z/poster-IDBATN7Z-auto-00001.png");
+        builder.setMonochrome("f00");
+        assertTrue(StringUtils.equals(getParamByName(builder.makeLink(), CImgIxBuilder.ImgIxParams.MONO.getParamName()).getValue(), "f00123"));
+    }
+
     @Test
     public void builderShouldChangePalette() throws Exception {
         IImgIxBuilder builder = new CImgIxBuilder(domain, "/channel-CMB_CH001/movie-IDBATN7Z/poster-IDBATN7Z-auto-00001.png");

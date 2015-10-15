@@ -36,5 +36,7 @@ public interface IImgIxBuilder {
 
     IImgIxBuilder setPalette(String palette);
 
+    boolean isJsonPalette();
+
     IImgIxBuilder setTrim(String trim, String trimcol, String trimmd, String trimsd, String trimtol);
 }

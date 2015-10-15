@@ -1,5 +1,6 @@
 package imgix;
 
+import imgix.palette.CPaletteJson;
 import org.junit.Test;
 
 import javax.imageio.ImageIO;
@@ -54,5 +55,38 @@ public class CImgIxDownloaderTest {
         ImageIO.write(image, ext, outputFile);
 
         assertTrue(outputFile.exists());
+    }
+
+    @Test
+    public void shouldDownloadPaletteJsonByUrl() throws Exception {
+        String ext = "jpg";
+        IImgIxBuilder builder = new CImgIxBuilder(domain, "/channel-CMB_CH001/movie-IDBATN7Z/poster-IDBATN7Z-auto-00001.png");
+        builder.setWidth("480")
+                .setHeight("300")
+                .setExtension(ext)
+                .setQuality("75")
+                .setTrim("auto", "black", "9", "8", "")
+                .setAuto("enhance")
+                .setFit("crop")
+                .setPalette("json");
+        CPaletteJson paletteJson = CImgIxDownloader.downloadPaletteJson(builder.makeLink());
+
+        assertTrue(paletteJson != null);
+    }
+
+    @Test
+    public void shouldNotDownloadPaletteJsonByUrl() throws Exception {
+        String ext = "jpg";
+        IImgIxBuilder builder = new CImgIxBuilder(domain, "/channel-CMB_CH001/movie-IDBATN7Z/poster-IDBATN7Z-auto-00001.png");
+        builder.setWidth("480")
+                .setHeight("300")
+                .setExtension(ext)
+                .setQuality("75")
+                .setTrim("auto", "black", "9", "8", "")
+                .setAuto("enhance")
+                .setFit("crop");
+        CPaletteJson paletteJson = CImgIxDownloader.downloadPaletteJson(builder.makeLink());
+
+        assertTrue(paletteJson == null);
     }
 }
