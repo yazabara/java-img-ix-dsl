@@ -34,5 +34,7 @@ public interface IImgIxBuilder {
 
     IImgIxBuilder setMonochrome(String monochrome);
 
+    IImgIxBuilder setPalette(String palette);
+
     IImgIxBuilder setTrim(String trim, String trimcol, String trimmd, String trimsd, String trimtol);
 }

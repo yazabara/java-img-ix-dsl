@@ -19,6 +19,7 @@ public class CImgIxBuilder implements IImgIxBuilder {
         TRIM("trim"),
         FIT("fit"),
         BLUR("blur"),
+        PALETTE("palette"),
         MONO("mono"),
         TRIMMD("trimmd"),
         TRIMSD("trimsd"),
@@ -67,6 +68,12 @@ public class CImgIxBuilder implements IImgIxBuilder {
      * The default value is clip.
      */
     private String fit;
+    /**
+     * color palette extraction
+     * The palette parameter extracts color values from an image and returns them in the specified format. Palette extraction occurs after image processing.
+     * Any adjustments and cropping effects applied will change the color palette response. Valid values are css and json.
+     */
+    private String palette;
     /**
      * blur
      * Applies a gaussian style blur to your image. Valid values are in the range from 0 – 2000. The default value is 0 which leaves the image unchanged.
@@ -136,6 +143,9 @@ public class CImgIxBuilder implements IImgIxBuilder {
         //additional params
         if (StringUtils.isNotBlank(blur)) {
             uriBuilder.addParameter(ImgIxParams.BLUR.paramName, blur);
+        }
+        if (StringUtils.isNotBlank(palette)) {
+            uriBuilder.addParameter(ImgIxParams.PALETTE.paramName, palette);
         }
         if (StringUtils.isNotBlank(monochrome)) {
             uriBuilder.addParameter(ImgIxParams.MONO.paramName, monochrome);
@@ -235,6 +245,14 @@ public class CImgIxBuilder implements IImgIxBuilder {
             return this;
         }
         this.auto = auto;
+        return this;
+    }
+
+    public IImgIxBuilder setPalette(String palette) {
+        if (!StringUtils.equals(palette, "css") && !StringUtils.equals(palette, "json")) {
+            return this;
+        }
+        this.palette = palette;
         return this;
     }
 
