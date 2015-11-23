@@ -265,6 +265,7 @@ public class CImgIxBuilder implements IImgIxBuilder {
     }
 
     public IImgIxBuilder setMonochrome(String monochrome) {
+        assert monochrome != null;
         this.monochrome = monochrome;
         return this;
     }
