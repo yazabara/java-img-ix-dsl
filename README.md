@@ -2,7 +2,7 @@
 
 ###ImgIx helpers
 
-Contains classes to help with ImgIx(https://webapp.imgix.com/) services (using amazon S3);
+Contains classes to help with ImgIx(https://webapp.imgix.com/) service;
 
 CImgIxBuilder - for making url, using DSL like:
 
